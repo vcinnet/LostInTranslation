@@ -18,14 +18,18 @@ public class GUI {
         SwingUtilities.invokeLater(() -> {
             //use Jlist
             JPanel countryPanel = new JPanel();
-            JList<String> countryList = new JList<>();
+            Translator translator = new CanadaTranslator();
+            String[] items = new String[translator.getCountryCodes().size()];
+            int i = 0;
+            for(String langaugeCode : translator.getCountryCodes()) {
+                items[i++] = langaugeCode;
+            }
+            JList<String> countryList = new JList<>(items);
             JLabel resultLabel = new JLabel("\t\t\t\t\t\t\t");
 
             //use combo box
             JPanel languagePanel = new JPanel();
             languagePanel.add(new JLabel("Language:"));
-
-            Translator translator = new CanadaTranslator();
 
             // create combobox, add country codes into it, and add it to our panel
             JComboBox<String> languageComboBox = new JComboBox<>();
@@ -50,7 +54,6 @@ public class GUI {
                     if (e.getStateChange() == ItemEvent.SELECTED) {
                         String country = languageComboBox.getSelectedItem().toString();
                         String language = countryList.getModel().getElementAt(countryList.getSelectedIndices()[0]);
-                        Translator translator = new CanadaTranslator();
                         String result = translator.translate(country, language);
                         if (result == null) {
                             result = "no translation found!";
@@ -83,7 +86,6 @@ public class GUI {
                 public void valueChanged(ListSelectionEvent e) {
                     String country = languageComboBox.getSelectedItem().toString();
                     String language = countryList.getModel().getElementAt(countryList.getSelectedIndices()[0]);
-                    Translator translator = new CanadaTranslator();
                     String result = translator.translate(country, language);
                     if (result == null) {
                         result = "no translation found!";

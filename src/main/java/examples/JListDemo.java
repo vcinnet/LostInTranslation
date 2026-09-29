@@ -21,9 +21,10 @@ public class JListDemo {
 
             Translator translator = new CanadaTranslator();
 
-            String[] items = new String[translator.getLanguageCodes().size()];
+
 
             JComboBox<String> languageComboBox = new JComboBox<>();
+            String[] items = new String[translator.getLanguageCodes().size()];
             int i = 0;
             for(String langaugeCode : translator.getLanguageCodes()) {
                 items[i++] = langaugeCode;
