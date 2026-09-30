@@ -69,6 +69,7 @@ public class GUI {
             frame.setVisible(true);
 
 
-        });
+        }
+        );
     }
 }
